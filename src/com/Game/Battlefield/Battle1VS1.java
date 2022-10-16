@@ -15,7 +15,7 @@ public class Battle1VS1 {
      * Виведення на екран результатів бою
      */
     public void results(int i, int num){
-        System.out.println("\n Переміг дроїд №" + num + ". Кількість раундів: " + i/2);
+        System.out.println("\n Переміг дроїд №" + num + ". Кількість раундів: " + i);
     }
 
     /**
@@ -24,20 +24,60 @@ public class Battle1VS1 {
     public void fight(){
         // Якщо ініціатива першого дроїда, більша ніж у другого
         if (droid_1.getInitiative() > droid_2.getInitiative()){
-            for(int i=1; ; i++){
-                if(i%2 == 0){
-                    if(droid_1.getHealth() > 0){
-                        droid_1.getHit(droid_2.getDamage());
+            for(int i=1; ;i++){
+                if(droid_2.getHealth() > 0){
+                    droid_2.getHit(droid_1.getDamage());
+                    System.out.println("get hit with " + droid_2.getDamage());
+                }
+                else {
+                    results(i, 2);
+                    break;
+                }
+                if(droid_1.getHealth() > 0){
+                    droid_1.getHit(droid_2.getDamage());
+                    System.out.println("get hit with " + droid_2.getDamage());
+                }
+                else {
+                    results(i, 1);
+                    break;
+                }
+            }
+        }
+        // Якщо ініціативність другого дроїда більша ніж у першого
+        else if (droid_1.getInitiative() < droid_2.getInitiative()){
+            for (int i=1; ;i++){
+                if(droid_1.getHealth() > 0){
+                    droid_1.getHit(droid_2.getDamage());
+                    System.out.println("get hit with " + droid_2.getDamage());
+                }
+                else {
+                    results(i, 1);
+                    break;
+                }
+                if(droid_2.getHealth() > 0){
+                    droid_2.getHit(droid_1.getDamage());
+                    System.out.println("get hit with " + droid_2.getDamage());
+                }
+                else {
+                    results(i, 2);
+                    break;
+                }
+            }
+        }
+        // Якщо ініціатива дроїдів однакова
+        else {
+            if (Math.random() > Math.random()){
+                for(int i=1; ;i++){
+                    if(droid_2.getHealth() > 0){
+                        droid_2.getHit(droid_1.getDamage());
                         System.out.println("get hit with " + droid_2.getDamage());
                     }
                     else {
                         results(i, 2);
                         break;
                     }
-                }
-                else{
-                    if(droid_2.getHealth() > 0){
-                        droid_2.getHit(droid_1.getDamage());
+                    if(droid_1.getHealth() > 0){
+                        droid_1.getHit(droid_2.getDamage());
                         System.out.println("get hit with " + droid_2.getDamage());
                     }
                     else {
@@ -46,27 +86,22 @@ public class Battle1VS1 {
                     }
                 }
             }
-        }
-        // Якщо ініціативність другого дроїда більша ніж у першого
-        else {
-            for(int i=1; ; i++){
-                if(i%2 == 0){
-                    if(droid_2.getHealth() > 0){
-                        droid_2.getHit(droid_1.getDamage());
-                        System.out.println("get hit with " + droid_2.getDamage());
-                    }
-                    else {
-                        results(i, 2);
-                        break;
-                    }
-                }
-                else{
+            else {
+                for (int i=1; ;i++){
                     if(droid_1.getHealth() > 0){
                         droid_1.getHit(droid_2.getDamage());
                         System.out.println("get hit with " + droid_2.getDamage());
                     }
                     else {
                         results(i, 1);
+                        break;
+                    }
+                    if(droid_2.getHealth() > 0){
+                        droid_2.getHit(droid_1.getDamage());
+                        System.out.println("get hit with " + droid_2.getDamage());
+                    }
+                    else {
+                        results(i, 2);
                         break;
                     }
                 }
