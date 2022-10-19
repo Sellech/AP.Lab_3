@@ -21,12 +21,16 @@ public abstract class Droid {
         return health;
     }
 
-    public void setHealth(int health) {
-        this.health = health;
-    }
-
     public int getInitiative() {
         return initiative;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setHealth(int health) {
+        this.health = health;
     }
 
     public abstract void getHit(int damage);

@@ -3,8 +3,8 @@ package com.Game.Droids;
 public class Medium extends Droid {
     private int armor;
 
-    public Medium(){
-        super("R1 Середній", 150, 40, 100);
+    public Medium(String name){
+        super(name, 150, 40, 100);
         armor = 100;
     }
 

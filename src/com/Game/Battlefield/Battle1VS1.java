@@ -14,8 +14,9 @@ public class Battle1VS1 {
     /**
      * Виведення на екран результатів бою
      */
-    public void results(int i, int num){
-        System.out.println("\n Переміг дроїд №" + num + ". Кількість раундів: " + i);
+    public void results(int i, String droidName) {
+        System.out.println("\n" + droidName + " droid won! Congratulation!");
+        System.out.println("Number of rounds: " + i);
     }
 
     /**
@@ -30,7 +31,7 @@ public class Battle1VS1 {
                     System.out.println("get hit with " + droid_2.getDamage());
                 }
                 else {
-                    results(i, 2);
+                    results(i, droid_2.getName());
                     break;
                 }
                 if(droid_1.getHealth() > 0){
@@ -38,7 +39,7 @@ public class Battle1VS1 {
                     System.out.println("get hit with " + droid_2.getDamage());
                 }
                 else {
-                    results(i, 1);
+                    results(i, droid_1.getName());
                     break;
                 }
             }
@@ -51,7 +52,7 @@ public class Battle1VS1 {
                     System.out.println("get hit with " + droid_2.getDamage());
                 }
                 else {
-                    results(i, 1);
+                    results(i, droid_1.getName());
                     break;
                 }
                 if(droid_2.getHealth() > 0){
@@ -59,7 +60,7 @@ public class Battle1VS1 {
                     System.out.println("get hit with " + droid_2.getDamage());
                 }
                 else {
-                    results(i, 2);
+                    results(i, droid_2.getName());
                     break;
                 }
             }
@@ -73,7 +74,7 @@ public class Battle1VS1 {
                         System.out.println("get hit with " + droid_2.getDamage());
                     }
                     else {
-                        results(i, 2);
+                        results(i, droid_2.getName());
                         break;
                     }
                     if(droid_1.getHealth() > 0){
@@ -81,7 +82,7 @@ public class Battle1VS1 {
                         System.out.println("get hit with " + droid_2.getDamage());
                     }
                     else {
-                        results(i, 1);
+                        results(i, droid_1.getName());
                         break;
                     }
                 }
@@ -93,7 +94,7 @@ public class Battle1VS1 {
                         System.out.println("get hit with " + droid_2.getDamage());
                     }
                     else {
-                        results(i, 1);
+                        results(i, droid_1.getName());
                         break;
                     }
                     if(droid_2.getHealth() > 0){
@@ -101,7 +102,7 @@ public class Battle1VS1 {
                         System.out.println("get hit with " + droid_2.getDamage());
                     }
                     else {
-                        results(i, 2);
+                        results(i, droid_2.getName());
                         break;
                     }
                 }
