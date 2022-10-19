@@ -1,5 +1,9 @@
 package com.Game.Droids;
 
+/**
+ * Легкий дроїд, який компенсує скромні характеристики
+ * власною швидкістю і можливістю увертатись від пострілів
+ */
 public class Light extends Droid{
 
     public Light(String name){
@@ -13,7 +17,8 @@ public class Light extends Droid{
         else if (Math.random() < 0.4)
             System.out.print(getName() + " dodges the damage!\n");
         else {
-            setHealth(getHealth()-damage);
+            System.out.print(getName() + " Quick reflexes reduced some damage!\n");
+            setHealth(getHealth()-(damage-(1 +(int)(Math.random()*9))));
         }
     }
 }

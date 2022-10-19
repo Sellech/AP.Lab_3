@@ -4,9 +4,7 @@ import java.io.Console;
 import java.util.ArrayList;
 import java.util.Scanner;
 import com.Game.Battlefield.Battle1VS1;
-import com.Game.Droids.Droid;
-import com.Game.Droids.Medium;
-import com.Game.Droids.Light;
+import com.Game.Droids.*;
 
 
 public class Menu {
@@ -37,23 +35,25 @@ public class Menu {
         System.out.println("\t1) Light\n\t2) Medium\n\t3) Heavy\n\t4) Destroyer\n\t5) Supporter\n\t6) Exit");
 
         ArrayList<Droid> droidList = new ArrayList<Droid>();
-        for(int i=0; i<2;i++){
+        for(int i=1; i<=2;i++){
             option = in.nextInt();
             switch (option){
                 case 1 -> {
-                    Light droid = new Light(inputDroidName(i+1));
+                    Light droid = new Light(inputDroidName(i));
                     droidList.add(droid);
                 }
                 case 2 -> {
-                    Medium droid = new Medium(inputDroidName(i+1));
+                    Medium droid = new Medium(inputDroidName(i));
                     droidList.add(droid);
                 }
 
                 case 3 -> {
-
+                    Heavy droid = new Heavy(inputDroidName(i));
+                    droidList.add(droid);
                 }
                 case 4 -> {
-
+                    Destroyer droid = new Destroyer(inputDroidName(i));
+                    droidList.add(droid);
                 }
                 case 5 -> {
 

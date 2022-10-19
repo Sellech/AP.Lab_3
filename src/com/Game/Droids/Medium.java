@@ -1,5 +1,9 @@
 package com.Game.Droids;
 
+/**
+ *  Дроїд зі збалансованими характеристиками та
+ *  хорошою шкодою за один постріл
+ */
 public class Medium extends Droid {
     private int armor;
 

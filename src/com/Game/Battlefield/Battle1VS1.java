@@ -23,10 +23,10 @@ public class Battle1VS1 {
      * Виведення повідомлення про отримання урону
      */
     private void printHitD1(){
-        System.out.println(droid_1.getName() + " get hit with " + droid_2.getDamage() + "!\t" + droid_1.getHealth());
+        System.out.println(droid_1.getName() + " get hit with " + droid_2.getDamage() + "!");
     }
     private void printHitD2(){
-        System.out.println(droid_2.getName() + " get hit with " + droid_1.getDamage() + "!\t" + droid_2.getHealth());
+        System.out.println(droid_2.getName() + " get hit with " + droid_1.getDamage() + "!");
     }
 
 
@@ -42,7 +42,7 @@ public class Battle1VS1 {
                     droid_2.getHit(droid_1.getDamage());
                 }
                 else {
-                    results(i, droid_1.getName());
+                    results(i, droid_2.getName());
                     break;
                 }
                 if(droid_1.getHealth() > 0){
@@ -50,7 +50,7 @@ public class Battle1VS1 {
                     droid_1.getHit(droid_2.getDamage());
                 }
                 else {
-                    results(i, droid_2.getName());
+                    results(i, droid_1.getName());
                     break;
                 }
                 System.out.println();
@@ -64,7 +64,7 @@ public class Battle1VS1 {
                     droid_1.getHit(droid_2.getDamage());
                 }
                 else {
-                    results(i, droid_2.getName());
+                    results(i, droid_1.getName());
                     break;
                 }
                 if(droid_2.getHealth() > 0){
@@ -72,7 +72,7 @@ public class Battle1VS1 {
                     droid_2.getHit(droid_1.getDamage());
                 }
                 else {
-                    results(i, droid_1.getName());
+                    results(i, droid_2.getName());
                     break;
                 }
                 System.out.println();
