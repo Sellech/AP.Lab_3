@@ -8,7 +8,7 @@ public class Destroyer extends Droid{
     private int armor;
 
     public Destroyer(String name){
-        super(name, 140, 30, 125);
+        super(name, 100, 30, 125);
         armor = 20;
     }
 
