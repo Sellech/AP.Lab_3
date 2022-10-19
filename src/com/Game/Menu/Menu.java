@@ -6,6 +6,7 @@ import java.util.Scanner;
 import com.Game.Battlefield.Battle1VS1;
 import com.Game.Droids.Droid;
 import com.Game.Droids.Medium;
+import com.Game.Droids.Light;
 
 
 public class Menu {
@@ -40,7 +41,8 @@ public class Menu {
             option = in.nextInt();
             switch (option){
                 case 1 -> {
-
+                    Light droid = new Light(inputDroidName(i+1));
+                    droidList.add(droid);
                 }
                 case 2 -> {
                     Medium droid = new Medium(inputDroidName(i+1));
