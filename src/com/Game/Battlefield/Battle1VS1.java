@@ -15,7 +15,7 @@ public class Battle1VS1 {
      * Виведення на екран результатів бою
      */
     private void results(int i, String winner, String looser) {
-        System.out.println(BLACK + looser + " was destroyed..." + RESET);
+        System.out.println(looser + BLACK + " was destroyed..." + RESET);
         System.out.println(LINE.repeat(24)+PURPLE+" Results "+RESET+LINE.repeat(25));
         System.out.println(YELLOW + "\n" + winner + " droid won! Congratulation!" + RESET);
         System.out.println("Number of rounds: " + i);
@@ -78,6 +78,11 @@ public class Battle1VS1 {
                 break;
             }
             System.out.println();
+
+            try {    // затримка виведення результатів раунду
+                Thread.sleep(2000);
+            } catch (InterruptedException e){
+            }
         }
     }
 
@@ -86,12 +91,13 @@ public class Battle1VS1 {
      */
     public void scenario_2(){
         for (int i=1; ;i++){
+            System.out.println(LINE.repeat(24) + " Round "+ i + " " + LINE.repeat(25));
             if(droid_1.getHealth() > 0){
                 printHitD1();
                 droid_1.getHit(droid_2.getDamage());
             }
             else {
-                results(i, droid_1.getName(), droid_2.getName());
+                results(i, droid_2.getName(), droid_2.getName());
                 break;
             }
             if(droid_2.getHealth() > 0){
@@ -99,10 +105,15 @@ public class Battle1VS1 {
                 droid_2.getHit(droid_1.getDamage());
             }
             else {
-                results(i, droid_2.getName(), droid_2.getName());
+                results(i, droid_1.getName(), droid_2.getName());
                 break;
             }
             System.out.println();
+
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+            }
         }
     }
 

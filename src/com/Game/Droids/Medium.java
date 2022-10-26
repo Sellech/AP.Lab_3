@@ -20,4 +20,9 @@ public class Medium extends Droid {
         else
             setHealth(getHealth()-damage);
     }
+
+    @Override
+    public String getType() {
+        return "H";
+    }
 }

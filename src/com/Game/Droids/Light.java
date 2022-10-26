@@ -21,4 +21,9 @@ public class Light extends Droid{
             setHealth(getHealth()-(damage-(1 +(int)(Math.random()*9))));
         }
     }
+
+    @Override
+    public String getType() {
+        return "H";
+    }
 }

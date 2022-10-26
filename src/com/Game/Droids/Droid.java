@@ -38,4 +38,6 @@ public abstract class Droid {
     }
 
     public abstract void getHit(int damage);
+
+    public abstract String getType();
 }

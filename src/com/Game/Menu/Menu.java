@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import com.Game.Battlefield.*;
 import com.Game.Droids.*;
-
+import java.io.*;
 
 public class Menu {
     private int option;
@@ -59,12 +59,15 @@ public class Menu {
                 case 5 -> runMenu();
             }
         }
-
         System.out.println("\n"+LINE.repeat(17)+RED+" The battle has begun! "+RESET+LINE.repeat(18));
         Battle1VS1 battle = new Battle1VS1(droidList.get(0), droidList.get(1));
         battle.fight();
         runMenu();
     }
+
+    /**
+     * Метод для запуску бою команда на команду
+     */
 
     private void startBattleTeam(){
         Scanner in = new Scanner(System.in);
@@ -119,8 +122,145 @@ public class Menu {
         runMenu();
     }
 
-    private void startBattleFile(){
+    /**
+     * Метод для запуску бою з файлів
+     */
 
+    private void startBattleFile(){
+        Scanner in = new Scanner(System.in);
+        System.out.print("Enter the file path: ");    // C:\Users\chepy\Desktop\test_1.txt
+        String filePath = in.nextLine();
+
+        try(FileInputStream file = new FileInputStream(filePath))
+        {
+            byte[] buffer = new byte[file.available()];
+            file.read(buffer, 0, file.available());
+
+            // Спершу, визначаємо режим бою
+            String gameMode = "";
+            for(int i=0; i<4; i++){
+                gameMode += (char)buffer[i];
+            }
+            System.out.println(gameMode);
+
+            if(gameMode.equals("1vs1")){
+                ArrayList<Droid> droidList = new ArrayList<Droid>();
+                int counter = 0;
+
+                for(int i=4; i < buffer.length;){
+                    if((char)buffer[i] == ' ') {    // Зчитуємо новий дроїд
+                        int droidNameLength = 0;
+                        String droidName = "";
+
+                        for(int j=i+3; (char)buffer[j] != ' '; j++){
+                            droidName += (char)buffer[j];   // Спершу визначаємо ім'я робота
+                            droidNameLength++;
+                        }
+
+                        if(counter%2 == 1)
+                            droidName = BLUE + droidName + RESET;
+                        else
+                            droidName = RED + droidName + RESET;
+
+                        switch((char)buffer[i+1]) { // Далі створюємо дроїда
+                            case 'L' -> {
+                                Light droid = new Light(droidName);
+                                droidList.add(droid);
+                            }
+                            case 'M' -> {
+                                Medium droid = new Medium(droidName);
+                                droidList.add(droid);
+                            }
+                            case 'H' -> {
+                                Heavy droid = new Heavy(droidName);
+                                droidList.add(droid);
+                            }
+                            case 'D' -> {
+                                Destroyer droid = new Destroyer(droidName);
+                                droidList.add(droid);
+                            }
+                        }
+                        i += 3 + droidNameLength;
+                        counter++;
+                        if(counter == 2)
+                            break;
+                    }
+                }
+                System.out.println("\n"+LINE.repeat(17)+PURPLE+" File read successfully! "+RESET+LINE.repeat(16));
+                Battle1VS1 battle = new Battle1VS1(droidList.get(0), droidList.get(1));
+                battle.fight();
+                runMenu();
+            }
+            else {  // C:\Users\chepy\Desktop\test_2.txt
+                String temp = "";
+                temp += (char)buffer[5];    // зчитуємо символ, який відповідає за розмір команди
+                int droidNum = Integer.parseInt(temp);
+
+                ArrayList<Droid> blueTeam = new ArrayList<Droid>();
+                ArrayList<Droid> redTeam = new ArrayList<Droid>();
+
+                int counter = 0;
+
+                for(int i=6; i < buffer.length;){
+                    if((char)buffer[i] == ' ') {    // Зчитуємо новий дроїд
+                        int droidNameLength = 0;
+                        String droidName = "";
+
+                        for(int j=i+3; (char)buffer[j] != ' '; j++){
+                            droidName += (char)buffer[j];   // Спершу визначаємо ім'я робота
+                            droidNameLength++;
+                        }
+
+                        if(counter%2 == 1)
+                            droidName = BLUE + droidName + RESET;
+                        else
+                            droidName = RED + droidName + RESET;
+
+                        switch((char)buffer[i+1]) { // Далі створюємо дроїда
+                            case 'L' -> {
+                                Light droid = new Light(droidName);
+                                if(counter%2 == 1)
+                                    blueTeam.add(droid);
+                                else
+                                    redTeam.add(droid);
+                            }
+                            case 'M' -> {
+                                Medium droid = new Medium(droidName);
+                                if(counter%2 == 1)
+                                    blueTeam.add(droid);
+                                else
+                                    redTeam.add(droid);
+                            }
+                            case 'H' -> {
+                                Heavy droid = new Heavy(droidName);
+                                if(counter%2 == 1)
+                                    blueTeam.add(droid);
+                                else
+                                    redTeam.add(droid);
+                            }
+                            case 'D' -> {
+                                Destroyer droid = new Destroyer(droidName);
+                                if(counter%2 == 1)
+                                    blueTeam.add(droid);
+                                else
+                                    redTeam.add(droid);
+                            }
+                        }
+                        i += 3 + droidNameLength;
+                        counter++;
+                        if(counter == droidNum*2)
+                            break;
+                    }
+                }
+                System.out.println("\n"+LINE.repeat(17)+PURPLE+" File read successfully! "+RESET+LINE.repeat(16));
+                BattleTeam battle = new BattleTeam(blueTeam, redTeam);
+                battle.fight();
+                runMenu();
+            }
+        }
+        catch(IOException ex){
+            System.out.println(ex.getMessage());
+        }
     }
 
     /**
@@ -145,11 +285,4 @@ public class Menu {
     private static final String BLUE = "\u001B[34m";
     private static final String PURPLE = "\u001B[35m";
     private static final String LINE = "=";
-
-
-   /*
-    private static final String GREEN = "\u001B[32m";
-    private static final String CYAN = "\u001B[36m";
-    private static final String GREY = "\u001B[37m";
-    */
 }

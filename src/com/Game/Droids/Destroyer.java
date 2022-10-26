@@ -28,4 +28,9 @@ public class Destroyer extends Droid{
         }
 
     }
+
+    @Override
+    public String getType() {
+        return "D";
+    }
 }

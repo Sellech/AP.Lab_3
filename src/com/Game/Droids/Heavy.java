@@ -25,4 +25,8 @@ public class Heavy extends Droid {
             setHealth(getHealth()-damage);
     }
 
+    @Override
+    public String getType() {
+        return "H";
+    }
 }

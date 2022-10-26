@@ -57,9 +57,7 @@ public class BattleTeam {
                 for(int j=0; j < blueTeam.size();j++){
                     if (i % 2 == 1) {   // у непарних раундах синя команда ходить перша
                         // Хід робота з команди синіх
-                        if (j < blueTeam.size()) {   // перевірка чи дроїд з таким індексом є в команді
-                            scenarioBlue(j);
-                        }
+                        scenarioBlue(j);
                         // Хід робота з команди червоних
                         if (j < redTeam.size()) {
                             scenarioRed(j);
@@ -76,6 +74,11 @@ public class BattleTeam {
                         System.out.println();
                     }
                 }
+            }
+
+            try {    // затримка перед виведенням результату наступного раунду
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
             }
         }
 
@@ -103,7 +106,6 @@ public class BattleTeam {
         System.out.println(RED + "\n" + "Red droid-team won! Congratulation!" + RESET);
         System.out.println("Number of rounds: " + i);
     }
-
     private void resultsBlue(int i) {
         System.out.println(LINE.repeat(24)+PURPLE+" Results "+RESET+LINE.repeat(25));
         System.out.println(BLUE + "\n" + "Blue droid-team won! Congratulation!" + RESET);
@@ -151,7 +153,7 @@ public class BattleTeam {
     private int endScenarioBlue(int i) {
         for(int j=0; j < blueTeam.size(); j++) {
             for (; ; ) {
-                int num = (int) (Math.random() * redTeam.size()); // обираємо випадкового дроїда
+                int num = (int) (Math.random() * redTeam.size());
                 if (redTeam.get(num).getHealth() > 0) {
                     printHit(redTeam.get(num), blueTeam.get(j));
                     redTeam.get(num).getHit(blueTeam.get(j).getDamage());
